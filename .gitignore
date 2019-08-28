@@ -21,3 +21,82 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# eclipse specific git ignore
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# IntelliJ specific
+*.iml
+*.iws
+*.ipr
+*.ids
+.idea
+
+# Visual Studio specific
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.aps
+*.iobj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp_proj
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.ipdb
+*.scc
+
+# Visual Studio target files
+VBSWrapper/Debug
+VBSWrapper/Release
+
+# Python binaries
+*.pyc
+
+# .sde connection files
+*.sde
+
+# other
+*target*
+*.suo
+*.user
+.vs
+bin
+obj
+*.sdf
+*.opensdf
+Debug
+Release
+ipch
+*.exe
+*.lib
