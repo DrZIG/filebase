@@ -1,19 +1,29 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * name
  */
 @Entity
+@Table(name = "devices", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
 public class Device {
     @Id
     @GeneratedValue
+    @Column(nullable = false, updatable = false)
     private int id;
 
+    @NotNull
+    @Column(nullable = false)
     private String name;
+
+    @NotNull
+    @OneToMany(optional = false, cascade = CascadeType.ALL)
+    private List<File> files;
 
     public int getId() {
         return id;

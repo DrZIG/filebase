@@ -1,9 +1,9 @@
 package entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 
 /**
  * full path
@@ -14,20 +14,35 @@ import javax.persistence.Id;
  * ...
  */
 @Entity
+@Table(name = "files", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
 public class File {
     @Id
     @GeneratedValue
+    @Column(nullable = false, updatable = false)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String fullPath;
 
     private long size;
 
     private boolean doNotProcess;
 
-    private int deviceId;
-
     private boolean saveToStorage;
+
+    @NotNull
+    @ManyToOne(optional = false, mappedBy = "id")
+    @JoinColumn(name="deviceid")
+    private Device device;
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
 
     public Long getId() {
         return id;
@@ -61,13 +76,14 @@ public class File {
         this.doNotProcess = doNotProcess;
     }
 
-    public int getDeviceId() {
-        return deviceId;
-    }
+//    @Column(name = "deviceid", nullable = false)
+//    public int getDeviceId() {
+//        return device.getId();
+//    }
 
-    public void setDeviceId(int deviceId) {
-        this.deviceId = deviceId;
-    }
+//    public void setDeviceId(int deviceId) {
+//        this.deviceId = deviceId;
+//    }
 
     public boolean isSaveToStorage() {
         return saveToStorage;
