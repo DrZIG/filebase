@@ -15,7 +15,8 @@
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-            <property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost/~/H2/filebase_test;IFEXISTS=false"/>
+<!--            <property name="hibernate.connection.url" value="jdbc:h2:~/H2/filebase_test"/>-->
+            <property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost/~/H2/filebase_test"/>
             <property name="hibernate.connection.username" value="sa"/>
         </properties>
     </persistence-unit>

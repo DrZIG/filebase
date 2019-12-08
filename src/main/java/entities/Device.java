@@ -10,7 +10,7 @@ import java.util.Optional;
  * name
  */
 @Entity
-@Table(name = "devices", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
+@Table(name = "devices", uniqueConstraints = {@UniqueConstraint(columnNames = "id", name = "device_id")})
 public class Device {
     @Id
     @GeneratedValue
@@ -22,7 +22,7 @@ public class Device {
     private String name;
 
     @NotNull
-    @OneToMany(optional = false, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<File> files;
 
     public int getId() {
@@ -39,5 +39,13 @@ public class Device {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

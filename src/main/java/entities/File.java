@@ -4,6 +4,7 @@ package entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * full path
@@ -14,8 +15,8 @@ import javax.persistence.*;
  * ...
  */
 @Entity
-@Table(name = "files", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
-public class File {
+@Table(name = "files", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"}, name = "file_id")})
+public class File implements Serializable {
     @Id
     @GeneratedValue
     @Column(nullable = false, updatable = false)
@@ -32,7 +33,7 @@ public class File {
     private boolean saveToStorage;
 
     @NotNull
-    @ManyToOne(optional = false, mappedBy = "id")
+    @ManyToOne(optional = false)
     @JoinColumn(name="deviceid")
     private Device device;
 
@@ -91,5 +92,17 @@ public class File {
 
     public void setSaveToStorage(boolean saveToStorage) {
         this.saveToStorage = saveToStorage;
+    }
+
+    @Override
+    public String toString() {
+        return "File{" +
+                "id=" + id +
+                ", fullPath='" + fullPath + '\'' +
+                ", size=" + size +
+                ", doNotProcess=" + doNotProcess +
+                ", saveToStorage=" + saveToStorage +
+                ", device=" + device +
+                '}';
     }
 }
