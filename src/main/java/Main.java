@@ -1,5 +1,5 @@
 import common.Settings;
-import controllers.HibernateController;
+import controllers.FileDatabseWithHibernate;
 import entities.Device;
 import entities.File;
 
@@ -21,7 +21,7 @@ public class Main {
         testFile.setSaveToStorage(true);
 
 //        var sqlController = new JPA(settings);
-        var sqlController = new HibernateController(settings);
+        var sqlController = new FileDatabseWithHibernate(settings);
         sqlController.addDevice(testDevice);
         sqlController.addFile(testFile);
     }

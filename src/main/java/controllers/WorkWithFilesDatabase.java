@@ -4,7 +4,7 @@ import entities.Device;
 import entities.File;
 import exceptions.NotImplementedException;
 
-public interface SQLController {
+public interface WorkWithFilesDatabase {
     default void addFile(File file) throws NotImplementedException {
         throw new NotImplementedException("This method is not implemented");
     }

@@ -1,23 +1,21 @@
+/*
+ * Created by Dr.ZIG© on 7.1.2020
+ *
+ */
+
 package controllers;
 
 import common.Settings;
 import entities.Device;
 import entities.File;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.Properties;
 
-public class JPAController implements SQLController{
-    private final EntityManagerFactory entityManagerFactory;
-
-    public JPAController(Settings settings) {
-        Properties properties = new Properties();
-        properties.setProperty("IFEXISTS", "false");
-        entityManagerFactory = Persistence.createEntityManagerFactory(settings.DEFAULT_DATABASE.get(), properties);
+public class FileDatabaseWithJPA extends JPA implements WorkWithFilesDatabase {
+    public FileDatabaseWithJPA(Settings settings) {
+        super(settings);
     }
 
     @Override
@@ -66,11 +64,12 @@ public class JPAController implements SQLController{
         entityManager.close();
     }
 
+    @SuppressWarnings("JpaQlInspection")
     private void getFileUsingStaticQuery() {
         var entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 //        entityManager.createQuery("from File");
-        entityManager.createQuery("Select file from File as file", File.class)
+        entityManager.createQuery("Select file from Files as file", File.class)
                 .getResultList()
                 .forEach(System.out::println);
         entityManager.getTransaction().commit();
